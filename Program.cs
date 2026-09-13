@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 
 public abstract class Veiculo
 {
@@ -33,7 +30,7 @@ public class Carro : Veiculo
         Console.WriteLine("O cliente faz viagens no uber? (s/n)");
         string opc = "";
 
-        while(opc != "s" && opc != "n")
+        while (opc != "s" && opc != "n")
         {
             opc = Console.ReadLine();
 
@@ -46,7 +43,7 @@ public class Carro : Veiculo
         if (opc == "s")
         {
             this.isUber = true;
-        }    
+        }
         else
         {
             this.isUber = false;
@@ -67,13 +64,13 @@ public class Carro : Veiculo
             }
             else
             {
-                float vlr = (float) (HorarioSaida - HorarioEntrada) * 0.0056f * 0.85f; // o 0.0056 eh o preco por segundo, em media eh pra dar 20.56 reais por hora
+                float vlr = (float)(HorarioSaida - HorarioEntrada) * 0.0056f * 0.85f; // o 0.0056 eh o preco por segundo, em media eh pra dar 20.56 reais por hora
                 return vlr;
             }
         }
         else
         {
-            float vlr = (float) (HorarioSaida - HorarioEntrada) * 0.0056f;
+            float vlr = (float)(HorarioSaida - HorarioEntrada) * 0.0056f;
             return vlr;
         }
     }
@@ -91,14 +88,14 @@ public class Moto : Veiculo
 
         Console.WriteLine("Digite o modelo da moto: ");
         this.Modelo = Console.ReadLine();
-        
+
         Console.WriteLine("Digite o horario de entrada: ");
         this.HorarioEntrada = int.Parse(Console.ReadLine());
     }
 
     public override float CalcularValor()
     {
-        float vlr = (float) (HorarioSaida - HorarioEntrada) * 0.004f; // o 0.004 eh o preco por segundo, em media eh pra dar 14.4 reais por hora
+        float vlr = (float)(HorarioSaida - HorarioEntrada) * 0.004f; // o 0.004 eh o preco por segundo, em media eh pra dar 14.4 reais por hora
         return vlr;
     }
 }
@@ -113,7 +110,7 @@ public class Estacionamento
     public bool RegistrarVeiculo(Veiculo v) // retorna false se deu alguma merda e retorna true se deu certo
     {
         // verificar se n existe um outro veiculo com a mesma placa, oq n faz sentido ter
-        foreach(Veiculo veiculo in Veiculos)
+        foreach (Veiculo veiculo in Veiculos)
         {
             if (veiculo.Placa == v.Placa)
             {
@@ -127,7 +124,7 @@ public class Estacionamento
             Console.WriteLine("O estacionamento esta cheio!");
             return false;
         }
-        
+
         Veiculos.Add(v);
         QtdeVagas++;
         Console.WriteLine("Veiculo registrado com sucesso!");
@@ -138,7 +135,7 @@ public class Estacionamento
     {
         bool temVeiculo = false;
         Veiculo VeiculoRemover = null;
-        foreach(Veiculo veiculo in Veiculos)
+        foreach (Veiculo veiculo in Veiculos)
         {
             if (veiculo.Placa == Placa)
             {
@@ -164,7 +161,7 @@ public class Estacionamento
         bool temVeiculo = false;
         Veiculo veiculoPagar = null;
 
-        foreach(Veiculo veiculo in Veiculos)
+        foreach (Veiculo veiculo in Veiculos)
         {
             if (veiculo.Placa == Placa)
             {
@@ -180,17 +177,22 @@ public class Estacionamento
         }
 
         int op = -1;
-        
+
         Console.WriteLine("Digite o horario de saida");
 
-        int saida = int.Parse(Console.ReadLine());
-        veiculoPagar.HorarioSaida = saida;
+        int saida = 0;
 
+        while (saida < veiculoPagar.HorarioEntrada)
+        {
+            Console.WriteLine("Digite um horario de saida valido");
+            saida = int.Parse(Console.ReadLine());
+        }
+        veiculoPagar.HorarioSaida = saida;
         while (op != 1 && op != 2 && op != 3)
         {
             Console.WriteLine("Qual vai ser a forma de pagamento?");
             Console.WriteLine("1 - debito\n2 - credito\n3 - pix");
-            
+
             op = int.Parse(Console.ReadLine());
 
             if (op != 1 && op != 2 && op != 3)
@@ -200,7 +202,7 @@ public class Estacionamento
         }
 
         float valorPagar = veiculoPagar.CalcularValor();
-        
+
         if (op == 1)
         {
             Console.WriteLine($"Maquininha com valor para pagar de {valorPagar} reais");
@@ -244,7 +246,7 @@ public class Estacionamento
 
     public void MostrarVeiculos()
     {
-        foreach(Veiculo v in Veiculos)
+        foreach (Veiculo v in Veiculos)
         {
             String tipoVeiculo = "";
 
@@ -273,7 +275,7 @@ class Program
 
         int opcao = 0;
 
-        while(opcao != 4)
+        while (opcao != 4)
         {
             Console.WriteLine("Digite a opcao que deseja fazer:\n1 - Adicionar Veiculo\n2 - Mostrar Veiculos\n3 - Pagar Veiculo\n4 - Sair");
             opcao = int.Parse(Console.ReadLine());
@@ -290,7 +292,7 @@ class Program
                 while (opc != 1 && opc != 2)
                 {
                     Console.WriteLine("Selecione o tipo do veiculo:\n1 - Carro\n2 - Moto");
-                    
+
                     opc = int.Parse(Console.ReadLine());
 
                     if (opc != 1 && opc != 2)
@@ -307,7 +309,7 @@ class Program
                 }
                 else if (opc == 2)
                 {
-                    veiculo = new Moto();                    
+                    veiculo = new Moto();
                 }
 
                 veiculo.CriarVeiculo();

@@ -36,7 +36,7 @@ public class Carro : Veiculo
 
             if (opc != "s" && opc != "n")
             {
-                Console.WriteLine("Digite uma opcao valida");
+                Console.WriteLine("Digite uma opcao válida");
             }
         }
 

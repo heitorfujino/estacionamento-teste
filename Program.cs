@@ -214,7 +214,7 @@ public class Estacionamento
         }
         else if (op == 3)
         {
-            Console.WriteLine("Codigo pix: bWUgZGEgbm90YQ==");
+            Console.WriteLine("Codigo pix: bWUgZGEkirkgbm90YQ==");
         }
 
         string resposta = "bruh";

@@ -10,14 +10,16 @@ principalmente.
 # `#Integrantes` 
 
 ```
-Heitor Kaito Iwaya Fujino
-Gabriel Kenzo Sato
-Felipe Camargo Geremias
+- Heitor Kaito Iwaya Fujino
+- Gabriel Kenzo Sato
+- Felipe Camargo Geremias
 ```
 
 # `#Tecnologias` 
 
 ```
-C#, .NET e GitHub
+- C#
+- .NET
+- GitHub
 ```
 

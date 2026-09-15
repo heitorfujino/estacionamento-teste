@@ -77,6 +77,7 @@ public class Carro : Veiculo
     }
 }
 
+
 public class Moto : Veiculo
 {
     public override void CriarVeiculo()
@@ -103,7 +104,7 @@ public class Moto : Veiculo
 
 public class Estacionamento
 {
-    private int MaxVagas = 50;
+    private int MaxVagas = 2;
     public int QtdeVagas = 0;
     private List<Veiculo> Veiculos = new List<Veiculo>();
     public float LucroLiquido = 0.0f;
@@ -111,6 +112,13 @@ public class Estacionamento
     public bool RegistrarVeiculo(Veiculo v) // retorna false se deu alguma merda e retorna true se deu certo
     {
         // verificar se n existe um outro veiculo com a mesma placa, oq n faz sentido ter
+        
+        if (QtdeVagas == MaxVagas)
+        {
+            Console.WriteLine("O estacionamento esta cheio!");
+            return false;
+        }
+        
         foreach (Veiculo veiculo in Veiculos)
         {
             if (veiculo.Placa == v.Placa)
@@ -120,11 +128,6 @@ public class Estacionamento
             }
         }
 
-        if (QtdeVagas == MaxVagas)
-        {
-            Console.WriteLine("O estacionamento esta cheio!");
-            return false;
-        }
 
         Veiculos.Add(v);
         QtdeVagas++;

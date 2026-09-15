@@ -104,7 +104,7 @@ public class Moto : Veiculo
 
 public class Estacionamento
 {
-    private int MaxVagas = 2;
+    private int MaxVagas = 50;
     public int QtdeVagas = 0;
     private List<Veiculo> Veiculos = new List<Veiculo>();
     public float LucroLiquido = 0.0f;
@@ -118,7 +118,7 @@ public class Estacionamento
             Console.WriteLine("O estacionamento esta cheio!");
             return false;
         }
-        
+
         foreach (Veiculo veiculo in Veiculos)
         {
             if (veiculo.Placa == v.Placa)

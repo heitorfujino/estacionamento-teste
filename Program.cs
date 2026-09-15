@@ -185,8 +185,11 @@ public class Estacionamento
 
         while (saida < veiculoPagar.HorarioEntrada)
         {
-            Console.WriteLine("Digite um horario de saida valido");
             saida = int.Parse(Console.ReadLine());
+            if (saida < veiculoPagar.HorarioEntrada)
+            {
+                Console.WriteLine("Digite um horario de saida valido");
+            }
         }
         veiculoPagar.HorarioSaida = saida;
         while (op != 1 && op != 2 && op != 3)
